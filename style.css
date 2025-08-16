@@ -5,21 +5,32 @@ html, body {
   display: flex;
   flex-direction: column;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* Header Structure */
 header {
   background: linear-gradient(90deg, rgb(63, 62, 112) 0%, rgba(85, 85, 230, 1) 60%, rgba(139, 189, 199, 1) 100%);
   position: relative;
+  width: 100%;
   z-index: 1000;
   display: flex;
+  padding: 0;
+  margin: 0;
   flex-direction: column;
 }
 
-/* Navigation Bar - Now positioned above logo */
+/* Navigation Bar */
 .nav-container {
   width: 100%;
   padding: 15px 0;
+  margin-right: 0;
   background: linear-gradient(90deg, rgb(63, 62, 112) 0%, rgba(85, 85, 230, 1) 60%, rgba(139, 189, 199, 1) 100%);
   position: relative;
   z-index: 1001;
@@ -34,6 +45,7 @@ header {
   padding: 0;
   max-width: 1200px;
   flex-wrap: wrap;
+  overflow-x: hidden;
 }
 
 .main-nav a {
@@ -53,31 +65,36 @@ header {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Logo Section - Below navigation */
+/* Logo Section */
 .logo {
   width: 100%;
-  height: 270px;
+  height: auto;
+  min-height: 300px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: -40px;
+  padding: 40px 20px;
+  overflow: hidden;
 }
 
 .logo img {
-  height:90px;
-  width:90px;
-  margin-top: 5em;
-  margin-right:100em;
+  max-height: 90px;
+  max-width: 90px;
+  height: auto;
+  width: auto;
+  margin: 0 auto;
   border-radius: 4em;
   box-shadow: 8px 5px 8px rgb(159, 180, 63);
   transition: 1s ease;
+  object-fit: contain;
+  display: block;
 }
 
 .logo img:hover{
-  padding:1em;
+  padding: 1em;
 }
 
 #firstH1 {
@@ -85,7 +102,7 @@ header {
   font-size: 2.5em;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-top:-200px;
+  margin-top: 20px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -103,7 +120,7 @@ header {
   background: linear-gradient(135deg, #dcb951, #ceccc1);
   transition: all 0.3s;
   display: inline-block;
-  margin-top:-20px;
+  margin-top: 10px;
 }
 
 #a1:hover {
@@ -136,7 +153,7 @@ header {
   transform: translateY(-2px);
 }
 
-/* Auth Links - Positioned at top right */
+/* Auth Links */
 .links {
   position: absolute;
   top: 15px;
@@ -191,6 +208,7 @@ main {
   flex-wrap: wrap;
   gap: 15px;
   margin: 20px;
+  overflow-x: hidden;
 }
 
 .product {
@@ -204,7 +222,12 @@ main {
 
 .product img {
   width: 100%;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
   border-radius: 10px;
+  display: block;
+  margin: 0 auto 10px;
 }
 
 button {
@@ -280,6 +303,8 @@ button:hover {
   justify-content: center; 
   gap: 20px; 
   padding: 20px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .product {
@@ -293,10 +318,11 @@ button:hover {
   border-radius: 8px;
 }
 
-.product img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
+#products-container .product img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
   margin-bottom: 10px;
   border-radius: 5px;
 }
@@ -311,6 +337,7 @@ button:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 30px 20px;
+  overflow-x: hidden;
 }
 
 .about-hero {
@@ -328,6 +355,7 @@ button:hover {
   flex-wrap: wrap;
   gap: 30px;
   margin: 40px 0;
+  overflow-x: hidden;
 }
 
 .mission-card, .team-member {
@@ -355,8 +383,11 @@ button:hover {
   border-radius: 50%;
   margin-bottom: 15px;
   border: 3px solid #d6b457;
-  height:200px;
-  width:200px;
+  max-height: 200px;
+  max-width: 200px;
+  height: auto;
+  width: auto;
+  object-fit: contain;
 }
 
 /* Contact Page Styles */
@@ -364,6 +395,7 @@ button:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 30px 20px;
+  overflow-x: hidden;
 }
 
 .contact-hero {
@@ -381,6 +413,7 @@ button:hover {
   flex-wrap: wrap;
   gap: 30px;
   margin: 40px 0;
+  overflow-x: hidden;
 }
 
 .contact-card {
@@ -467,9 +500,15 @@ footer {
   color: white;
 }
 
+/* General Image Improvements */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* RESPONSIVE DESIGN - MOBILE */
 @media (max-width: 768px) {
-  /* Header adjustments */
   .logo {
     height: auto;
     padding: 20px 10px;
@@ -477,8 +516,8 @@ footer {
   }
   
   .logo img {
-    height: 60px;
-    width: 60px;
+    max-height: 60px;
+    max-width: 60px;
     margin-top: 0;
     margin-right: 0;
   }
@@ -495,7 +534,6 @@ footer {
     padding: 6px 12px;
   }
   
-  /* Navigation */
   .main-nav ul {
     gap: 10px;
     padding: 0 10px;
@@ -506,7 +544,6 @@ footer {
     padding: 6px 8px;
   }
   
-  /* Auth links */
   .links {
     position: relative;
     top: 0;
@@ -521,12 +558,10 @@ footer {
     padding: 6px 15px;
   }
   
-  /* Main content */
   main {
     padding: 15px;
   }
   
-  /* Products grid */
   #products-container {
     gap: 15px;
     padding: 15px;
@@ -537,12 +572,12 @@ footer {
     min-width: 150px;
   }
   
-  .product img {
-    width: 100%;
-    height: 120px;
+  .product img,
+  #products-container .product img {
+    max-width: 120px;
+    height: auto;
   }
   
-  /* Cart */
   .cart-summary {
     padding: 15px;
   }
@@ -556,7 +591,6 @@ footer {
     padding: 10px 20px;
   }
   
-  /* About and Contact pages */
   .about-page, .contact-page {
     padding: 20px 15px;
   }
@@ -574,12 +608,16 @@ footer {
     min-width: 100%;
   }
   
+  .team-member img {
+    max-height: 150px;
+    max-width: 150px;
+  }
+  
   .contact-form {
     padding: 20px;
     margin: 20px 0;
   }
   
-  /* Footer */
   footer {
     padding: 15px;
   }
@@ -592,6 +630,11 @@ footer {
 
 /* SMALL MOBILE (max-width: 480px) */
 @media (max-width: 480px) {
+  .logo img {
+    max-height: 50px;
+    max-width: 50px;
+  }
+  
   #firstH1 {
     font-size: 1.5em;
   }
@@ -612,6 +655,17 @@ footer {
     max-width: 280px;
   }
   
+  .product img,
+  #products-container .product img {
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .team-member img {
+    max-height: 120px;
+    max-width: 120px;
+  }
+  
   .links {
     flex-direction: column;
     gap: 8px;
@@ -626,8 +680,8 @@ footer {
 /* VERY SMALL SCREENS (max-width: 320px) */
 @media (max-width: 320px) {
   .logo img {
-    height: 50px;
-    width: 50px;
+    max-height: 40px;
+    max-width: 40px;
   }
   
   #firstH1 {
@@ -644,7 +698,14 @@ footer {
     padding: 8px;
   }
   
-  .product img {
-    height: 100px;
+  .product img,
+  #products-container .product img {
+    max-width: 80px;
+    height: auto;
+  }
+  
+  .team-member img {
+    max-height: 100px;
+    max-width: 100px;
   }
 }
