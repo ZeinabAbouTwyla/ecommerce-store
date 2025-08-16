@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>كل المنتجات</title>
+   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    .filters-section {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .search-filter-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .search-box {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+    }
+    
+    .search-box input {
+      width: 90%;
+      padding: 12px 50px 12px 15px;
+      border: 2px solid #ddd;
+      border-radius: 25px;
+      font-size: 16px;
+      outline: none;
+    }
+    
+    .search-box input:focus {
+      border-color: #bfa871;
+    }
+    
+    .search-box i {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #bfa871;
+    }
+    
+    .filter-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-group select {
+      padding: 2px 10px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+    }
+    
+    .filter-group select:focus {
+      border-color: #bfa871;
+    }
+    
+    .clear-filters {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .clear-filters:hover {
+      background: #c82333;
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 50px;
+      color: #666;
+      font-size: 1.2em;
+    }
+    
+    .sale-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #bb5656;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
+      z-index: 10;
+    }
+    
+    .discount-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #58c952;
+      color: white;
+      padding: 5px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 10;
+    }
+    
+    .product {
+      position: relative;
+    }
+    
+    .original-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 0.9em;
+      margin-right: 5px;
+    }
+    
+    .sale-price {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+    
+    @media (max-width: 79px) {
+      .search-filter-container {
+        flex-direction: column;
+      }
+      
+      .search-box {
+        min-width: 60%;
+      }
+      
+      .filter-group {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+ <header>
+  <div class="logo">
+    <h1 id="firstH1">Welcome to Our Store</h1>
+    <div>
+      <a href="all-products.html" id="a1">Shop Now</a>
+    </div>
+  </div>
+  
+  <div class="nav-container">
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="all-products.html"><button id="view-all">All products</button></a></li>
+        <li>
+          <a href="cart.html" class="cart-link">
+            <ion-icon name="cart-outline"></ion-icon>
+            (<span id="cart-count">0</span>)
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <div class="links">
+      <a href="sign.html" class="signup-btn" id="signup-link">Sign Up</a>
+      <a href="log.html" class="login-btn" id="login-link">Log In</a>
+      <a href="#" class="login-btn" id="logout-btn" style="display: none;" onclick="logout()">Logout</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Search and Filter Section -->
+  <div class="filters-section">
+    <div class="search-filter-container">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="ابحث عن المنتجات...">
+        <i class="fas fa-search"></i>
+      </div>
+      
+      <div class="filter-group">
+        <select id="priceFilter">
+          <option value="">كل الأسعار</option>
+          <option value="0-400">أقل من 400 ج.م</option>
+          <option value="400-600">400 - 600 ج.م</option>
+          <option value="600-800">600 - 800 ج.م</option>
+          <option value="800+">أكثر من 800 ج.م</option>
+        </select>
+        
+        <select id="sortFilter">
+          <option value="">ترتيب حسب</option>
+          <option value="price-low">السعر: من الأقل للأعلى</option>
+          <option value="price-high">السعر: من الأعلى للأقل</option>
+          <option value="name-az">الاسم: أ - ي</option>
+          <option value="name-za">الاسم: ي - أ</option>
+        </select>
+        
+        <button class="clear-filters" onclick="clearAllFilters()">مسح الفلاتر</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="products-container" style="min-height: 400px;"></div>
+  <div id="no-results" class="no-results" style="display: none;">
+    <i class="fas fa-search" style="font-size: 3em; margin-bottom: 15px; color: #ddd;"></i>
+    <h3>لا توجد منتجات تطابق بحثك</h3>
+    <p>جرب البحث بكلمات مختلفة أو امسح الفلاتر</p>
+  </div>
+</main>
+
+<footer>
+    <section class="footer-section">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="all-products.html">All products</a></li>
+            </ul>
+        </nav>
+        <p>Follow us on:</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>Copyrights&copy; 2025 Store. All rights reserved.</p>
+    </section>
+</footer>
+
+<script src="all-products.js"></script>
+<script src="cart.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+// Check login status
+function checkLoginStatus() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const signupLink = document.getElementById('signup-link');
+    const loginLink = document.getElementById('login-link');
+    const logoutBtn = document.getElementById('logout-btn');
+    
+    if (user && user.name) {
+        signupLink.style.display = 'none';
+        loginLink.style.display = 'none';
+        logoutBtn.style.display = 'inline-block';
+    }
+}
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('cart');
+    checkLoginStatus();
+    updateCartCount();
+    location.reload();
+}
+
+checkLoginStatus();
+</script>
+       
+</body>
+</html>

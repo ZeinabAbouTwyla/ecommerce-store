@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "ساعة جلد سوداء فخمة بلمسة كلاسيكية",
+    "price": 450,
+    "originalPrice": 600,
+    "image": "demo/image1.jpeg",
+    "quantity": 10,
+    "ratings": [5, 4, 4, 5],
+    "onSale": true,
+    "discount": 25
+  },
+  {
+    "id": 2,
+    "name": "ساعة معدنية ذهبية أنيقة للسهرات",
+    "price": 650,
+    "image": "demo/image2.jpeg",
+    "quantity": 8,
+    "ratings": [5, 5, 4, 5]
+  },
+  {
+    "id": 3,
+    "name": "ساعة كاجوال بنية تناسب اللبس اليومي",
+    "price": 280,
+    "originalPrice": 350,
+    "image": "demo/image3.jpeg",
+    "quantity": 15,
+    "ratings": [4, 4, 3],
+    "onSale": true,
+    "discount": 20
+  },
+  {
+    "id": 4,
+    "name": "ساعة معدنية فضية بتصميم راقي وبسيط",
+    "price": 500,
+    "image": "demo/img4.jpeg",
+    "quantity": 12,
+    "ratings": [5, 4, 5, 5]
+  },
+  {
+    "id": 5,
+    "name": "ساعة سوداء مناسبة للمناسبات الرسمية",
+    "price": 480,
+    "originalPrice": 600,
+    "image": "demo/img5.jpeg",
+    "quantity": 6,
+    "ratings": [4, 4, 5],
+    "discount": 20
+  },
+  {
+    "id": 6,
+    "name": "ساعة معدنية فضية ذهبيه تصميم عصري كلاسيكي",
+    "price": 480,
+    "image": "demo/image6.jpeg",
+    "quantity": 9,
+    "ratings": [5, 3, 4]
+  },
+  {
+    "id": 7,
+    "name": "ساعة معدنية بنية و ذهبية للرجال بمينا أنيقة",
+    "price": 560,
+    "originalPrice": 700,
+    "image": "demo/image7.jpeg",
+    "quantity": 5,
+    "ratings": [5, 5, 4, 5, 4],
+    "onSale": true,
+    "discount": 20
+  },
+  {
+    "id": 8,
+    "name": "ساعة رياضية سوداء مقاومة للماء",
+    "price": 380,
+    "image": "demo/image8.jpeg",
+    "quantity": 14,
+    "ratings": [4, 4, 4, 3]
+  },
+  {
+    "id": 9,
+    "name": "ساعة جلد زرقاء كلاسيكية مع عقارب ذهبية",
+    "price": 420,
+    "originalPrice": 520,
+    "image": "demo/image9.jpeg",
+    "quantity": 7,
+    "ratings": [5, 5, 5, 4],
+    "discount": 19
+  },
+  {
+    "id": 10,
+    "name": "ساعة معدنية سوداء بعقارب أنيقة",
+    "price": 650,
+    "image": "demo/image10.jpeg",
+    "quantity": 4,
+    "ratings": [5, 4, 4, 4]
+  },
+  {
+    "id": 11,
+    "name": "ساعة معدنية بنية و ذهبية للرجال بمينا أنيقة",
+    "price": 630,
+    "originalPrice": 700,
+    "image": "demo/image7.jpeg",
+    "quantity": 8,
+    "ratings": [5, 5, 4, 5, 4],
+    "discount": 10
+  },
+  {
+    "id": 12,
+    "name": "ساعة رياضية سوداء مقاومة للماء",
+    "price": 304,
+    "originalPrice": 380,
+    "image": "demo/image8.jpeg",
+    "quantity": 14,
+    "ratings": [4, 4, 4, 3],
+    "onSale": true,
+    "discount": 20
+  },
+  {
+    "id": 13,
+    "name": "ساعة كلاسيكية ذهبية فاخرة",
+    "price": 850,
+    "image": "demo/image7.jpeg",
+    "quantity": 3,
+    "ratings": [5, 5, 4, 5, 4]
+  },
+  {
+    "id": 14,
+    "name": "ساعة عصرية بتصميم أنيق",
+    "price": 340,
+    "originalPrice": 425,
+    "image": "demo/image8.jpeg",
+    "quantity": 12,
+    "ratings": [4, 4, 4, 3],
+    "discount": 20
+  }
+]

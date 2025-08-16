@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+  <header>
+     <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+               
+                 <li><a href="all-products.html"><button id="view-all">All products </button></a></li>
+               <li>
+            <a href="cart.html" class="cart-link">
+                <ion-icon name="cart-outline"></ion-icon>
+                (<span id="cart-count">0</span>)
+            </a>
+        </li>
+            </ul>
+          </nav>
+    
+    <div class="links">
+      <a href="sign.html" class="signup-btn" id="signup-link">Sign Up</a>
+      <a href="log.html" class="login-btn" id="login-link">Log In</a>
+      <a href="#" class="login-btn" id="logout-btn" style="display: none;" onclick="logout()">Logout</a>
+    </div>
+    
+    <h1 style="text-align:center; padding: 200px;">سلة المشتريات</h1>
+  </header>
+
+  <main style="padding:0px; ">
+    <div id="cart-container" class="products"></div>
+    <div style="text-align:center; margin-top:20px;">
+      <button id="clear-cart" style="background:red; color:white; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">
+        إفراغ السلة
+      </button>
+    </div>
+
+    <div class="cart-summary">
+      <p>الإجمالي: <span id="total-price">0</span> ج.م</p>
+      
+      <button id="checkout-btn">شراء</button>
+    </div>
+    
+  </main>
+
+  <script src="cart.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Check login status
+    function checkLoginStatus() {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        const signupLink = document.getElementById('signup-link');
+        const loginLink = document.getElementById('login-link');
+        const logoutBtn = document.getElementById('logout-btn');
+        
+        if (user && user.name) {
+            signupLink.style.display = 'none';
+            loginLink.style.display = 'none';
+            logoutBtn.style.display = 'inline-block';
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('cart');
+        checkLoginStatus();
+        updateCartCount();
+        location.reload();
+    }
+
+    checkLoginStatus();
+  </script>
+   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

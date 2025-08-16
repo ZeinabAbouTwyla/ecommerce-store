@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تفاصيل المنتج</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    .product-details {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 150px 20px 50px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+    
+    .product-image {
+      text-align: center;
+      position: relative;
+    }
+    
+    .product-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    
+    .product-image img:hover {
+      transform: scale(1.05);
+    }
+    
+    .product-badges {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      pointer-events: none;
+    }
+    
+    .sale-badge, .discount-badge {
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .sale-badge {
+      background: #e74c3c;
+    }
+    
+    .discount-badge {
+      background: #f39c12;
+    }
+    
+    .product-info {
+      padding: 20px;
+    }
+    
+    .product-info h1 {
+      color: #3f3e70;
+      margin-bottom: 20px;
+      font-size: 2.2em;
+      line-height: 1.4;
+    }
+    
+    .price-section {
+      margin: 20px 0;
+    }
+    
+    .original-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 1.2em;
+      margin-right: 10px;
+    }
+    
+    .current-price {
+      font-size: 2em;
+      color: #e74c3c;
+      font-weight: bold;
+    }
+    
+    .regular-price {
+      font-size: 2em;
+      color: #bfa871;
+      font-weight: bold;
+    }
+    
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .stars {
+      display: flex;
+      gap: 2px;
+    }
+    
+    .star {
+      color: #ffd700;
+      font-size: 18px;
+    }
+    
+    .quantity-info {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border-left: 4px solid #bfa871;
+    }
+    
+    .buy-section {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .buy-btn-large {
+      background: linear-gradient(135deg, #bfa871, #a68c5b);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .buy-btn-large:hover {
+      background: linear-gradient(135deg, #a68c5b, #8f7449);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .back-btn {
+      background: #6c757d;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+    
+    .back-btn:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
+    
+    .product-specs {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    
+    .product-specs h3 {
+      color: #3f3e70;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #bfa871;
+      padding-bottom: 10px;
+    }
+    
+    @media (max-width: 768px) {
+      .product-details {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 120px 20px 50px;
+      }
+      
+      .buy-section {
+        flex-direction: column;
+      }
+      
+      .buy-btn-large, .back-btn {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+ <header>
+  <div class="logo">
+    <img src="https://img.freepik.com/premium-vector/ecommerce-logo-design-vector-template_852937-4670.jpg" alt="logo image">
+    <h1 id="firstH1">Welcome to Our Store</h1>
+    <div>
+      <a href="all-products.html" id="a1">Shop Now</a>
+    </div>
+  </div>
+  
+  <div class="nav-container">
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="all-products.html"><button id="view-all">All products</button></a></li>
+        <li>
+          <a href="cart.html" class="cart-link">
+            <ion-icon name="cart-outline"></ion-icon>
+            (<span id="cart-count">0</span>)
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <div class="links">
+      <a href="sign.html" class="signup-btn" id="signup-link">Sign Up</a>
+      <a href="log.html" class="login-btn" id="login-link">Log In</a>
+      <a href="#" class="login-btn" id="logout-btn" style="display: none;" onclick="logout()">Logout</a>
+    </div>
+  </div>
+</header>
+
+  <main>
+    <div class="product-details">
+      <div class="product-image">
+        <div class="product-badges" id="product-badges"></div>
+        <img id="product-img" src="" alt="">
+      </div>
+      
+      <div class="product-info">
+        <h1 id="product-name"></h1>
+        
+        <div class="price-section" id="price-section">
+          <!-- Price will be dynamically inserted here -->
+        </div>
+        
+        <div class="rating">
+          <div class="stars" id="product-rating"></div>
+          <span id="rating-text"></span>
+        </div>
+        
+        <div class="quantity-info">
+          <strong>الكمية المتاحة: </strong>
+          <span id="product-quantity"></span> قطعة
+        </div>
+        
+        <div class="product-specs">
+          <h3>مواصفات المنتج</h3>
+          <ul id="product-specs-list">
+            <li>جودة عالية ومواد ممتازة</li>
+            <li>تصميم أنيق وعصري</li>
+            <li>ضمان لمدة سنة</li>
+            <li>شحن مجاني للطلبات فوق 500 جنيه</li>
+          </ul>
+        </div>
+        
+        <div class="buy-section">
+          <button class="buy-btn-large" id="add-to-cart">
+            <i class="fa-solid fa-cart-plus"></i>
+            إضافة للسلة
+          </button>
+          <a href="all-products.html" class="back-btn">
+            <i class="fa-solid fa-arrow-right"></i>
+            العودة للمنتجات
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+   <footer>
+        <section class="footer-section">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="all-products.html">All products</a></li>
+                </ul>
+            </nav>
+
+            <p>Follow us on:</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>Copyrights&copy; 2025 Store. All rights reserved.</p>
+        </section>
+    </footer>
+
+  <script>
+    // Get product ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    if (productId) {
+      // Load product data
+      fetch('products.json')
+        .then(response => response.json())
+        .then(products => {
+          const product = products.find(p => p.id == productId);
+          
+          if (product) {
+            // Display product data
+            document.getElementById('product-img').src = product.image;
+            document.getElementById('product-img').alt = product.name;
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('product-quantity').textContent = product.quantity;
+            
+            // Handle badges
+            const badgesContainer = document.getElementById('product-badges');
+            let badgesHTML = '';
+            
+            if (product.onSale) {
+              badgesHTML += '<div class="sale-badge">تخفيض</div>';
+            }
+            
+            if (product.discount) {
+              badgesHTML += `<div class="discount-badge">-${product.discount}%</div>`;
+            }
+            
+            badgesContainer.innerHTML = badgesHTML;
+            
+            // Handle price display
+            const priceSection = document.getElementById('price-section');
+            if (product.originalPrice && product.originalPrice > product.price) {
+              priceSection.innerHTML = `
+                <span class="original-price">${product.originalPrice} ج.م</span>
+                <span class="current-price">${product.price} ج.م</span>
+              `;
+            } else {
+              priceSection.innerHTML = `<span class="regular-price">${product.price} ج.م</span>`;
+            }
+            
+            // Calculate rating
+            if (product.ratings && product.ratings.length > 0) {
+              const avgRating = product.ratings.reduce((a, b) => a + b, 0) / product.ratings.length;
+              const starsContainer = document.getElementById('product-rating');
+              const ratingText = document.getElementById('rating-text');
+              
+              starsContainer.innerHTML = '';
+              for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('i');
+                star.className = i <= Math.round(avgRating) ? 'fas fa-star star' : 'far fa-star star';
+                starsContainer.appendChild(star);
+              }
+              
+              ratingText.textContent = `(${avgRating.toFixed(1)}/5 - ${product.ratings.length} تقييم)`;
+            }
+            
+            // Add to cart button
+            document.getElementById('add-to-cart').addEventListener('click', () => {
+              // Check if user is logged in
+              const user = JSON.parse(localStorage.getItem('currentUser'));
+              if (!user) {
+                alert('يجب تسجيل الدخول أولاً للتمكن من إضافة المنتجات إلى السلة');
+                window.location.href = 'log.html';
+                return;
+              }
+              
+              let cart = JSON.parse(localStorage.getItem("cart")) || [];
+              cart.push(product);
+              localStorage.setItem("cart", JSON.stringify(cart));
+              updateCartCount();
+              
+              // Confirmation message
+              const btn = document.getElementById('add-to-cart');
+              const originalText = btn.innerHTML;
+              btn.innerHTML = '<i class="fa-solid fa-check"></i> تم الإضافة!';
+              btn.style.background = '#28a745';
+              
+              setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+              }, 2000);
+            });
+          } else {
+            // Product not found
+            document.querySelector('.product-details').innerHTML = `
+              <div style="text-align: center; padding: 50px;">
+                <h2>المنتج غير موجود</h2>
+                <a href="all-products.html" class="back-btn">العودة للمنتجات</a>
+              </div>
+            `;
+          }
+        })
+        .catch(error => {
+          console.error('خطأ في تحميل المنتج:', error);
+          document.querySelector('.product-details').innerHTML = `
+            <div style="text-align: center; padding: 50px;">
+              <h2>خطأ في تحميل المنتج</h2>
+              <a href="all-products.html" class="back-btn">العودة للمنتجات</a>
+            </div>
+          `;
+        });
+    } else {
+      // No product ID
+      document.querySelector('.product-details').innerHTML = `
+        <div style="text-align: center; padding: 50px;">
+          <h2>لا يوجد منتج محدد</h2>
+          <a href="all-products.html" class="back-btn">العودة للمنتجات</a>
+        </div>
+      `;
+    }
+
+    // Update cart count
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      document.getElementById("cart-count").textContent = cart.length;
+    }
+
+    // Check login status
+    function checkLoginStatus() {
+      const user = JSON.parse(localStorage.getItem('currentUser'));
+      const signupLink = document.getElementById('signup-link');
+      const loginLink = document.getElementById('login-link');
+      const logoutBtn = document.getElementById('logout-btn');
+      
+      if (user && user.name) {
+        signupLink.style.display = 'none';
+        loginLink.style.display = 'none';
+        logoutBtn.style.display = 'inline-block';
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('cart');
+      checkLoginStatus();
+      updateCartCount();
+      location.reload();
+    }
+
+    updateCartCount();
+    checkLoginStatus();
+  </script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

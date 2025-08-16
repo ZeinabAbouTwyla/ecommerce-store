@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Store</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="sign&log.css"/>
+     <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+   <header>
+  <div class="logo">
+     <img src="https://img.freepik.com/premium-vector/ecommerce-logo-design-vector-template_852937-4670.jpg" alt="logo image"   >
+     
+    <h1 id="firstH1">Welcome to Our Store</h1>
+    <div>
+      <a href="all-products.html" id="a1">Shop Now</a>
+    </div>
+  </div>
+  
+  <div class="nav-container">
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      
+        <li><a href="all-products.html"><button id="view-all">All products</button></a></li>
+           <li>
+          <a href="cart.html" class="cart-link">
+            <ion-icon name="cart-outline"></ion-icon>
+            (<span id="cart-count">0</span>)
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+    
+    <div class="links">
+      <a href="sign.html" class="signup-btn">Sign Up</a>
+      <a href="log.html" class="login-btn">Log In</a>
+    </div>
+  </div>
+</header>
+
+  <main class="container">
+        <div class="auth-container">
+            <div class="auth-image"></div>
+            <div class="auth-form">
+                <h1>Create Account</h1>
+                <form action="#" method="POST" id="signupForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">SIGN UP</button>
+                </form>
+                
+                <div class="auth-links">
+                    <p>Already have an account? <a href="log.html">Log in</a></p>
+                </div>
+                
+                <div class="social-auth">
+                    <p>Or sign up with</p>
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn"><i class="fab fa-google"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+ <footer>
+        <section class="footer-section">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="all-products.html">All products</a></li>
+                </ul>
+            </nav>
+            <p>Follow us on:</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>Copyrights&copy; 2025 Store. All rights reserved.</p>
+        </section>
+    </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Authentication System for Sign Up
+    document.addEventListener('DOMContentLoaded', function() {
+        const signupForm = document.getElementById('signupForm');
+        
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(signupForm);
+            const password = formData.get('password');
+            const confirmPassword = formData.get('confirm-password');
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                alert('كلمات المرور غير متطابقة');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('كلمة المرور يجب أن تكون على الأقل 6 أحرف');
+                return;
+            }
+            
+            // Create user object
+            const userData = {
+                name: formData.get('name'),
+                firstName: formData.get('name').split(' ')[0],
+                lastName: formData.get('name').split(' ').slice(1).join(' ') || '',
+                email: formData.get('email'),
+                password: password,
+                registrationDate: new Date().toISOString()
+            };
+            
+            // Check if user already exists
+            const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+            const userExists = existingUsers.find(user => user.email === userData.email);
+            
+            if (userExists) {
+                alert('هذا البريد الإلكتروني مسجل بالفعل');
+                return;
+            }
+            
+            // Save user
+            existingUsers.push(userData);
+            localStorage.setItem('users', JSON.stringify(existingUsers));
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            
+            alert('تم إنشاء الحساب بنجاح! مرحباً بك');
+            window.location.href = 'index.html';
+        });
+    });
+
+    // Update cart count
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartCount = document.getElementById("cart-count");
+      if (cartCount) {
+        cartCount.textContent = cart.length;
+      }
+    }
+    updateCartCount();
+  </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+       
+       
+</body>
+</html>

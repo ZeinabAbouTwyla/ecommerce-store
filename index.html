@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Store</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Hero Slider Styles */
+        .hero-slider {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-content h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .slide-content p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+        
+        .slide-btn {
+            background: #d6b457;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .slide-btn:hover {
+            background: #c69b2a;
+            transform: translateY(-3px);
+        }
+        
+        /* Welcome Message */
+        .welcome-message {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px auto;
+            max-width: 1200px;
+            display: none;
+        }
+        
+        .welcome-message.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Special Offers Section */
+        .special-offers {
+            background: #f8f9fa;
+            padding: 40px 20px;
+            margin: 30px auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .offer-card {
+            background: linear-gradient(135deg, #a970ca, #765394);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transform: perspective(1000px) rotateY(0deg);
+            transition: all 0.3s ease;
+        }
+        
+        .offer-card:hover {
+            transform: perspective(1000px) rotateY(5deg) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .discount-badge {
+            background: #ffd700;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="https://img.freepik.com/premium-vector/ecommerce-logo-design-vector-template_852937-4670.jpg" alt="logo image">
+    <h1 id="firstH1">Welcome to Our Store</h1>
+    <div>
+      <a href="all-products.html" id="a1">Shop Now</a>
+    </div>
+  </div>
+  
+  <div class="nav-container">
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="all-products.html"><button id="view-all">All products</button></a></li>
+        <li>
+          <a href="cart.html" class="cart-link">
+            <ion-icon name="cart-outline"></ion-icon>
+            (<span id="cart-count">0</span>)
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <div class="links">
+      <a href="sign.html" class="signup-btn" id="signup-link">Sign Up</a>
+      <a href="log.html" class="login-btn" id="login-link">Log In</a>
+      <a href="#" class="login-btn" id="logout-btn" style="display: none;" onclick="logout()">Logout</a>
+    </div>
+  </div>
+</header>
+
+<main>
+    <!-- Welcome Message -->
+    <div class="welcome-message" id="welcomeMessage">
+        <h2>مرحباً بك، <span id="userName"></span>!</h2>
+        <p>نحن سعداء لرؤيتك مرة أخرى. استمتع بتسوق أفضل المنتجات</p>
+    </div>
+
+    <!-- Hero Slider -->
+    <div class="hero-slider">
+        <div class="slide active">
+            <div class="slide-content">
+                <h2>عروض خاصة</h2>
+                <p>خصم يصل إلى 50% على جميع الساعات</p>
+                <a href="all-products.html" class="slide-btn">تسوق الآن</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-content">
+                <h2>منتجات جديدة</h2>
+                <p>اكتشف أحدث مجموعة من الساعات العصرية</p>
+                <a href="all-products.html" class="slide-btn">اكتشف المزيد</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-content">
+                <h2>شحن مجاني</h2>
+                <p>شحن مجاني لجميع الطلبات فوق 500 جنيه</p>
+                <a href="all-products.html" class="slide-btn">ابدأ التسوق</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Special Offers Section -->
+    <div class="special-offers">
+        <h2>عروض اليوم المميزة</h2>
+        <div class="offers-grid">
+            <div class="offer-card">
+                <div class="discount-badge">خصم 30%</div>
+                <h3>ساعات كلاسيكية</h3>
+                <p>خصم خاص على مجموعة الساعات الكلاسيكية الفاخرة</p>
+            </div>
+            <div class="offer-card">
+                <div class="discount-badge">خصم 25%</div>
+                <h3>ساعات رياضية</h3>
+                <p>تخفيضات مذهلة على الساعات الرياضية المقاومة للماء</p>
+            </div>
+            <div class="offer-card">
+                <div class="discount-badge">اشتر 2 واحصل على 1</div>
+                <h3>عرض خاص</h3>
+                <p>عند شراء ساعتين احصل على الثالثة مجاناً</p>
+            </div>
+        </div>
+    </div>
+
+    <h1 style="text-align: center;">أحدث المنتجات</h1>
+    <div id="products-container" class="products"></div>
+</main>
+
+<footer>
+    <section class="footer-section">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="all-products.html">All products</a></li>
+            </ul>
+        </nav>
+        <p>Follow us on:</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>Copyrights&copy; 2025 Store. All rights reserved.</p>
+    </section>
+</footer>
+
+<script src="script.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+// Hero Slider
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+
+setInterval(nextSlide, 4000);
+
+// Check login status and show welcome message
+function checkLoginStatus() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const signupLink = document.getElementById('signup-link');
+    const loginLink = document.getElementById('login-link');
+    const logoutBtn = document.getElementById('logout-btn');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    const userName = document.getElementById('userName');
+    
+    if (user && user.name) {
+        // User is logged in
+        signupLink.style.display = 'none';
+        loginLink.style.display = 'none';
+        logoutBtn.style.display = 'inline-block';
+        
+        userName.textContent = user.name;
+        welcomeMessage.classList.add('show');
+    } else {
+        // User is not logged in
+        signupLink.style.display = 'inline-block';
+        loginLink.style.display = 'inline-block';
+        logoutBtn.style.display = 'none';
+        welcomeMessage.classList.remove('show');
+    }
+}
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('cart');
+    checkLoginStatus();
+    updateCartCount();
+}
+
+// Initialize
+checkLoginStatus();
+</script>
+
+</body>
+</html>

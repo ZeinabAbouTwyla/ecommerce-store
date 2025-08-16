@@ -1,0 +1,163 @@
+/*  sign up style  */
+.auth-container {
+            display: flex;
+            min-height: 50vh;
+            /* border:1px solid red; */
+
+        }
+        
+        .auth-image {
+            flex: 2;
+            background: url('https://images.pexels.com/photos/6214471/pexels-photo-6214471.jpeg') center/cover no-repeat;
+            display: none;
+            /* height:100em;
+            width:20em */
+        }
+        
+        .auth-form {
+            flex: 1;
+            padding: 40px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .auth-form h1 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #274ecd;
+        }
+        
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #6b6eff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .auth-btn:hover {
+            background-color: #ff5252;
+        }
+        
+        .auth-links {
+            text-align: center;
+            margin-top: 20px;
+            
+        }
+        
+        .auth-links a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+        
+        .social-auth {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .social-auth p {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .social-auth p::before,
+        .social-auth p::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+            position: absolute;
+            top: 50%;
+            width: 30%;
+        }
+        
+        .social-auth p::before {
+            left: 0;
+        }
+        
+        .social-auth p::after {
+            right: 0;
+        }
+        
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            /* margin-top: 5em; */
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            color: #333;
+            transition: all 0.3s;
+        }
+        
+        .social-btn:hover {
+            background: #ff6b6b;
+            color: white;
+            border-color: #ff6b6b;
+        }
+        
+        /* @media (min-width: 992px) {
+            .auth-image {
+                display: block;
+            }
+        } */
+        /*  log in style  */
+
+         /* Add these additional styles for signin */
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 8px;
+        }
+        
+        .forgot-password a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
